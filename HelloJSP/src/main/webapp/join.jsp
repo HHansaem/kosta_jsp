@@ -5,7 +5,7 @@
 	String id = request.getParameter("id"); 
 	String name = request.getParameter("name"); 
 	String password = request.getParameter("password"); 
-	String email = request.getParameter("email"); 
+	String email = request.getParameter("email");
 	String address = request.getParameter("address"); 
 %>
 <!DOCTYPE html>
