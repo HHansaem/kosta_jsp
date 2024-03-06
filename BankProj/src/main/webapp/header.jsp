@@ -16,10 +16,10 @@
 		<a href="accountInfoForm.jsp">계좌조회</a>
 		<a href="allAccountInfo.jsp">전체계좌조회</a>
 		<a href="transfer.jsp">계좌이체</a>
-	</div>
-	<div style="float: right;">
-		<a href="makeAccount.jsp">회원가입</a>
-		<a href="makeAccount.jsp">로그인</a>
+		<div style="float: right;">
+			<a href="join.jsp">회원가입</a>
+			<a href="login.jsp">로그인</a>
+		</div>
 	</div>
 </div>
 	
