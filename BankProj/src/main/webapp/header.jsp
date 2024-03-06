@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String user = (String)session.getAttribute("user");
+%>
 <style>
 	a {
 		text-decoration: none;
@@ -17,8 +20,13 @@
 		<a href="allAccountInfo.jsp">전체계좌조회</a>
 		<a href="transfer.jsp">계좌이체</a>
 		<div style="float: right;">
+			<% if(user == null) { %>
+				<a href="login.jsp">로그인</a>
+			<% } else { %>
+				<%=user %>님 환영합니다&nbsp;&nbsp;
+				<a href="logout">로그아웃</a>
+			<% } %>
 			<a href="join.jsp">회원가입</a>
-			<a href="login.jsp">로그인</a>
 		</div>
 	</div>
 </div>
