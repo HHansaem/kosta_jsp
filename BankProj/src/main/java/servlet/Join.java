@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import vo.Account;
 import vo.Member;
 
 /**
@@ -41,11 +40,17 @@ public class Join extends HttpServlet {
 		
 		Member mem = new Member(id, name, password, email, address);
 		HttpSession session = request.getSession();
-		session.setAttribute(id, mem); 
-		
-		request.setAttribute("err", "회원가입 완료"); 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("error.jsp");
-		dispatcher.forward(request, response);
+
+		//중복 아이디 확인
+		Object obj = session.getAttribute(id);
+		if(obj != null) {
+			request.setAttribute("err", "사용중인 아이디 입니다"); 
+			RequestDispatcher dispatcher = request.getRequestDispatcher("error.jsp");
+			dispatcher.forward(request, response);
+		} else {
+			session.setAttribute(id, mem); 
+			response.sendRedirect("login.jsp");
+		}
 	}
 
 }
