@@ -5,14 +5,54 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+    .header {
+        text-align: center;
+    } 
+    .container {
+        width: 280px;
+        border: 1px solid black;
+        padding: 10px;
+        margin: 0 auto;
+    }
+    .row {
+        height: 30px;
+    }
+    .title {
+        float: left;
+        width: 70px;
+        text-align: center;
+        font-weight: bold;
+    }
+    .input {
+        float: left;
+    }
+    input[type='submit'] {
+        font-weight: bold;
+        width: 120px;
+        background-color: lightgray;
+        display: block;
+        margin: 0 auto;
+    }
+</style>
 </head>
 <body>
 <%@ include file="header.jsp" %>
-	<h1>로그인</h1>
 	<form action="login" method="post">
-		아이디:<input type="text" name="id"/><br>
-		비밀번호:<input type="text" name="password"/><br>
-		<input type="submit" value="로그인"/>
+		<div class="header"><h3>로그인</h3></div>
+		<div class="container">
+	    	<div class="row">
+				<div class="title">아이디</div>
+				<div class="input"><input type="text" name="id"/></div>
+			</div>
+			<div class="row">
+				<div class="title">비밀번호</div>
+				<div class="input"><input type="text" name="password"/></div>
+			</div>
+			<div class="button">
+				<input type="submit" value="로그인"/>
+			</div>
+		</div>
 	</form>
 </body>
 </html>
