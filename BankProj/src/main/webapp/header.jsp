@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-	String user = (String)session.getAttribute("user");
-%>
 <style>
 	a {
 		text-decoration: none;
@@ -22,7 +19,7 @@
 		<a href="transfer.jsp">계좌이체</a>
 		<div style="float: right;">
 			<c:choose>
-				<c:when test="${user == null }">
+				<c:when test="${user eq Empty }">  <!-- user 앞에 sessionScope 생략 -->
 					<a href="login.jsp">로그인</a>
 				</c:when>
 				<c:otherwise>

@@ -36,7 +36,7 @@
 		<c:forEach var="user" items="<%=users %>" varStatus="status">
 			<tr>
 				<td>${status.count }</td>
-				<td>${user.id }</td>
+				<td>${user['id'] }</td>
 				<td>${user.name }</td>
 				<td>${user.password }</td>
 				<td>${user.email }</td>

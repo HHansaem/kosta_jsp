@@ -4,6 +4,7 @@
 <%@page import="java.util.Enumeration"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	List<Account> accs = new ArrayList<>();
 	Enumeration<String> names = session.getAttributeNames();  //세션에 담긴 모든 정보 가져오기
@@ -108,7 +109,24 @@
                 <div class="title column">종류</div>
                 <div class="title column">등급</div>
             </div>
-            <% for(int i=0; i < accs.size(); i++) { %>
+            
+            <c:forEach var="accs" items="<%=accs %>" varStatus="status">
+            	<div class="row">
+	            	<div class="column">${status.count }</div>
+	                <div class="column">${accs.id }</div>
+	                <div class="column">${accs.name }</div>
+	                <div class="column">${accs.balance }</div>
+	                <div class="column">${accs.type }</div>
+					<div class="column">
+						<c:if test='${accs.grade != null }'>
+	                		${accs.grade }
+	                	</c:if>
+					</div>
+<!-- 	             EL표기법은 null이면 안 찍음! 그래서 그냥 아래 코드로 써줘도 됨 -->
+<%-- 	             <div class="column">${accs.grade }</div> --%>
+
+<%-- 		EL표기법 (JSTL) 사용하지 않은 코드
+			<% for(int i=0; i < accs.size(); i++) { %>
             	<div class="row">
 	            	<div class="column"><%=i+1 %></div>
 	                <div class="column"><%=accs.get(i).getId() %></div>
@@ -117,7 +135,10 @@
 	                <div class="column"><%=accs.get(i).getType() %></div>
 	                <div class="column"><%=accs.get(i).getGrade() == null ? "" : accs.get(i).getGrade() %></div>
                 </div>
-            <% } %>
+            <% } %> 
+--%>
+                </div>
+            </c:forEach>
         </div>
     </form>
 </body>
