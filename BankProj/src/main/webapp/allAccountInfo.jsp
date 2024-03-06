@@ -1,5 +1,22 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="vo.Account"%>
+<%@page import="java.util.Enumeration"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	List<Account> accs = new ArrayList<>();
+	Enumeration<String> names = session.getAttributeNames();  //세션에 담긴 모든 정보 가져오기
+	
+	while(names.hasMoreElements()) {
+		String name = names.nextElement();
+		Object obj = session.getAttribute(name);
+		if(obj instanceof Account) {
+			accs.add((Account)obj);
+		}
+	}
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,7 +54,7 @@
         }
     </style>
     <script>
-        var accs = [
+       /*  var accs = [
             {id:'1001', name:'홍길동', balance:100000, type:'일반', grade:''},
             {id:'1002', name:'김길동', balance:200000, type:'특수', grade:'VIP'},
             {id:'1003', name:'고길동', balance:300000, type:'특수', grade:'Gold'},
@@ -58,24 +75,24 @@
                 $("<div></div>").addClass('column').text(item.grade).appendTo(row);
                 $('#container').append(row);
             })
-        })
+        }) */
 
         //** javascript 방식
-        // window.onload = function() {
-        //     var container = document.getElementById("container");
-        //     var elemStr = "";
-        //     accs.forEach((item, index) => 
-        //         elemStr += `<div class = 'row'>
-        //                     <div class="column">${index}</div>
-        //                     <div class="column">${item.id}</div>
-        //                     <div class="column">${item.name}</div>
-        //                     <div class="column">${item.balance}</div>
-        //                     <div class="column">${item.type}</div>
-        //                     <div class="column">${item.grade}</div>
-        //                     </div>`)
-        //         // elemStr += "</div>"
-        //         container.innerHTML += elemStr;
-        // }
+        /* window.onload = function() {
+            var container = document.getElementById("container");
+            var elemStr = "";
+            accs.forEach((item, index) => 
+                elemStr += `<div class = 'row'>
+                            <div class="column">${index}</div>
+                            <div class="column">${item.id}</div>
+                            <div class="column">${item.name}</div>
+                            <div class="column">${item.balance}</div>
+                            <div class="column">${item.type}</div>
+                            <div class="column">${item.grade}</div>
+                            </div>`)
+                // elemStr += "</div>"
+                container.innerHTML += elemStr;
+        } */
     </script>
 </head>
 <body>
@@ -91,6 +108,16 @@
                 <div class="title column">종류</div>
                 <div class="title column">등급</div>
             </div>
+            <% for(int i=0; i < accs.size(); i++) { %>
+            	<div class="row">
+	            	<div class="column"><%=i+1 %></div>
+	                <div class="column"><%=accs.get(i).getId() %></div>
+	                <div class="column"><%=accs.get(i).getName() %></div>
+	                <div class="column"><%=accs.get(i).getBalance() %></div>
+	                <div class="column"><%=accs.get(i).getType() %></div>
+	                <div class="column"><%=accs.get(i).getGrade() == null ? "" : accs.get(i).getGrade() %></div>
+                </div>
+            <% } %>
         </div>
     </form>
 </body>

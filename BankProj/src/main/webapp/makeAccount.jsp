@@ -50,7 +50,7 @@
                 }
             }
 
-            let form = document.forms[0];  //form에 name이 없으니까 form들 중 첫번째 form 가져온다는 것
+/*            let form = document.forms[0];  //form에 name이 없으니까 form들 중 첫번째 form 가져온다는 것
             form.onsubmit = function() {
                 let id = form.elements.id.value;
                 let name = form.elements.name.value;
@@ -63,13 +63,13 @@
                 }
                 console.log(`계좌번호:${id}, 이름:${name}, 잔액:${balance}, 종류:${type}, 등급:${grade}`);
                 return false;
-            }
+            } */
         }
     </script>
 </head>
 <body>
 <%@ include file="header.jsp" %>
-    <form action="">
+    <form action="makeaccount" method="post">
         <div class="header"><h3>계좌개설</h3></div>
         <div class="container">
             <div class="row">

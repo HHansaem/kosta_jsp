@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="vo.Account"%>
+<%
+	Account acc = (Account)request.getAttribute("acc");  //서블릿에서 request에서 담은 값 get
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,29 +36,31 @@
     </style>
 </head>
 <body>
-<%@ include file="header.jsp" %>
+	<%@ include file="header.jsp" %>
     <div class="header"><h3>계좌조회</h3></div>
+	<%if(acc != null) { %>
     <div class="container">
         <div class="row">
             <div class="title">계좌번호</div>
-            <div class="input"><input type="text" disabled></div>
+            <div class="input"><input type="text" disabled value=<%=acc.getId() %>></div>
         </div>
         <div class="row">
             <div class="title">이름</div>
-            <div class="input"><input type="text" disabled></div>
+            <div class="input"><input type="text" disabled value=<%=acc.getName() %>></div>
         </div>
         <div class="row">
             <div class="title">입금액</div>
-            <div class="input"><input type="text" disabled></div>
+            <div class="input"><input type="text" disabled value=<%=acc.getBalance() %>></div>
         </div>
         <div class="row">
             <div class="title">종류</div>
-            <div class="input"><input type="text" disabled></div>
+            <div class="input"><input type="text" disabled value=<%=acc.getType() %>></div>
         </div> 
         <div class="row">
             <div class="title">등급</div>
-            <div class="input"><input type="text" disabled></div>
+            <div class="input"><input type="text" disabled value=<%=acc.getGrade() %>></div>
         </div>
     </div>
+        <% } %>
 </body>
 </html>
