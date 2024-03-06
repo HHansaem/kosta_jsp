@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -48,6 +49,23 @@ public class Login extends HttpServlet {
 			dispatcher = request.getRequestDispatcher("error.jsp");
 		} else {  //success : session에 사용자 정보 저장
 			session.setAttribute("user", member.getId());
+			
+			//자동로그인 체크하여 쿠키로 내려보내기
+			String autologin = request.getParameter("autologin");
+			System.out.println(autologin);
+			Cookie autoLogin = new Cookie("autologin", autologin);
+			autoLogin.setMaxAge(600);
+			response.addCookie(autoLogin);
+			
+			if(autologin.equals("true")) {
+				Cookie userId = new Cookie("id", id);
+				userId.setMaxAge(600);
+				Cookie userPassword = new Cookie("password", password);
+				userPassword.setMaxAge(600);
+				response.addCookie(userId);
+				response.addCookie(userPassword);
+			}
+			
 			dispatcher = request.getRequestDispatcher("makeAccount.jsp");
 		}
 		dispatcher.forward(request, response);

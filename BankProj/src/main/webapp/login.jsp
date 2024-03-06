@@ -1,5 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String cookieHeader = request.getHeader("Cookie");
+	Boolean autologin = false;
+	String id = "";
+	String password = "";
+	
+	if(cookieHeader != null) {
+		Cookie[] cookies = request.getCookies();
+		for(Cookie cookie : cookies) {
+			if(cookie.getName().equals("autologin")) {
+				autologin = true;
+			} else if(cookie.getName().equals("id")) {
+				id = cookie.getValue();
+			} else if(cookie.getName().equals("password")) {
+				password = cookie.getValue();
+			}
+		}
+	}
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,14 +62,25 @@
 		<div class="container">
 	    	<div class="row">
 				<div class="title">아이디</div>
-				<div class="input"><input type="text" name="id"/></div>
+				<div class="input">
+					<input type="text" name="id" value='<%=id%>'/>
+				</div>
 			</div>
 			<div class="row">
 				<div class="title">비밀번호</div>
-				<div class="input"><input type="text" name="password"/></div>
+				<div class="input">
+					<input type="text" name="password" value='<%=password%>'/>
+				</div>
 			</div>
-			<div class="button">
+			<div>
 				<input type="submit" value="로그인"/>
+			</div>
+			<div>
+				<% if(autologin) { %>
+					<input type="checkbox" value="true" name="autologin" checked="checked"/>자동로그인
+				<% } else { %>
+					<input type="checkbox" value="true" name="autologin"/>자동로그인
+				<% } %>
 			</div>
 		</div>
 	</form>
