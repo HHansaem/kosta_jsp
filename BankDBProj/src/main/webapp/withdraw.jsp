@@ -13,7 +13,7 @@
         .container {
             margin: 0 auto;
             border: 1px solid;
-            width: 280px;
+            width: 280px; 
             padding: 10px;
         }
         .row {
