@@ -69,7 +69,7 @@
 </head>
 <body>
 <%@ include file="header.jsp" %>
-    <form action="makeaccount" method="post">
+    <form action="makeAccount" method="post">
         <div class="header"><h3>계좌개설</h3></div>
         <div class="container">
             <div class="row">

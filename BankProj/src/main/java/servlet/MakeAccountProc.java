@@ -48,5 +48,9 @@ public class MakeAccountProc extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("accountInfo.jsp");
 		dispatcher.forward(request, response);  //데이터 공유하기 (request값 공유)
 	}
+	
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	      req.getRequestDispatcher("makeAccount.jsp").forward(req, resp);
+	   }
 
 }
