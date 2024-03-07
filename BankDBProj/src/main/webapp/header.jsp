@@ -14,7 +14,7 @@
 		<a href="makeAccount">계좌개설</a>
 		<a href="deposit">입금</a>
 		<a href="withdraw">출금</a>
-		<a href="accountInfoForm">계좌조회</a>
+		<a href="accountInfo">계좌조회</a>
 		<a href="allAccountInfo">전체계좌조회</a>
 		<a href="transfer">계좌이체</a>
 		<div style="float: right;">
