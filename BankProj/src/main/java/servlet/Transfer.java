@@ -53,5 +53,9 @@ public class Transfer extends HttpServlet {
 		}
 		dispatcher.forward(request, response);
 	}
+	
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	      req.getRequestDispatcher("transfer.jsp").forward(req, resp);
+	   }
 
 }

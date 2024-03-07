@@ -44,11 +44,11 @@
         <div class="container">
             <div class="row">
                 <div class="title">보내는계좌번호</div>
-                <div class="input"><input type="text" name="sendId"></div>
+                <div class="input"><input type="text" name="sid"></div>
             </div>
             <div class="row">
                 <div class="title">받는계좌번호</div>
-                <div class="input"><input type="text" name="recvId"></div>
+                <div class="input"><input type="text" name="rid"></div>
             </div>
             <div class="row">
                 <div class="title">송금액</div>
