@@ -39,7 +39,7 @@
 </head>
 <body>
 <%@ include file="header.jsp" %>
-    <form action="accountinfo" method="post">
+    <form action="accountInfo" method="post">
         <div class="header"><h3>계좌조회</h3></div>
         <div class="container">
             <div class="row">
