@@ -43,17 +43,9 @@ public class Login extends HttpServlet {
 		
 		try {
 			MemberService memberService = new MemberServiceImpl();
-			Member mem = memberService.login(id);
-			
-			if(mem == null) {
-				throw new Exception();
-			} else if(!password.equals(mem.getPassword())) {
-				request.setAttribute("err", "비밀번호가 틀립니다");
-				request.getRequestDispatcher("error.jsp").forward(request, response);
-			} else {
-				request.setAttribute("mem", mem);
-				request.getRequestDispatcher("makeAccount.jsp").forward(request, response);
-			}
+			memberService.login(id, password);
+			request.getSession().setAttribute("user", id);
+			request.getRequestDispatcher("makeAccount.jsp").forward(request, response);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
