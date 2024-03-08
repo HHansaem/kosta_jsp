@@ -45,12 +45,11 @@ public class MemberDAOImpl implements MemberDAO {
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			if(rs != null && rs.next()) {
-				String sid = rs.getString("id");
-				String sname = rs.getString("name");
-				String spassword = rs.getString("password");
-				String semail = rs.getString("email");
-				String saddress = rs.getString("address");
-				mem = new Member(sid, sname, spassword, semail, saddress);
+				mem = new Member(rs.getString(1)
+								, rs.getString(2)
+								, rs.getString(3)
+								, rs.getString(4)
+								, rs.getString(5));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
