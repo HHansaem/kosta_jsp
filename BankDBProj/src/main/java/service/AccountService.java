@@ -12,4 +12,6 @@ public interface AccountService {
 	void withdraw(String id, int money) throws Exception;
 	void transfer(String sid, String rid, int money) throws Exception;
 	List<Account> allAccountInfo() throws Exception;
+	
+	boolean checkDoubleId(String id) throws Exception;
 }
