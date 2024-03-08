@@ -10,7 +10,7 @@
         text-align: center;
     } 
     .container {
-        width: 280px;
+        width: 320px;
         border: 1px solid black;
         padding: 10px;
         margin: 0 auto;
@@ -35,6 +35,32 @@
         margin: 0 auto;
     }
 </style>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+	$(function() {
+		$('#doubleId').click(function(e) {
+			e.preventDefault();  //클릭 이벤트의 기본 행동 방지 (action으로 전송하는 거 방지)
+			//backend에 비동기로 요청 (ajax)
+			$.ajax({
+				url:'memberDoubleId',  //form의 action같은 거 (memberDoubleId 서블릿에 요청)
+				type:'post',  //post 방식으로 요청
+				async:true,  //비동기 요청 여부 설정
+				dataType:'text',  //서버로부터 text라는 타입으로 데이터를 받겠다는 것
+				data:{id:$('#id').val()},  //서버로 전송할 데이터 (key:value 형식으로 값을 넘겨줘서 서블릿에서 getParameter로 받을 수 있음)
+				success:function(result) {  //응답을 보낼 함수 (result: 서블릿에서 response로 받아온 데이터)
+					if(result == 'true') {
+						alert("아이디가 중복됩니다");
+					} else {
+						alert("사용 가능한 아이디 입니다");
+					}
+				},
+				error:function(result) {  //에러 났을 때 실행될 함수 (안 써도 됨)
+					
+				}
+			})
+		})
+	})
+</script>
 </head>
 <body>
 <%@ include file="header.jsp" %>
@@ -43,7 +69,8 @@
 		<div class="container">
 			<div class="row">
 				<div class="title">아이디</div>
-				<div class="input"><input type="text" name="id"/></div>
+				<div class="input"><input type="text" name="id" id="id"/></div>&nbsp;
+				<button id="doubleId">중복</button>
 			</div>
 			<div class="row">
 				<div class="title">이름</div>
