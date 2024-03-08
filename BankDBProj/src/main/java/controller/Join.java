@@ -47,7 +47,6 @@ public class Join extends HttpServlet {
 		try {
 			MemberService memberService = new MemberServiceImpl();
 			memberService.join(mem);
-			request.setAttribute("mem", mem);
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
