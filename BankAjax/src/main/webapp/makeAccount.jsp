@@ -105,6 +105,9 @@
 					$('#id').val("");  
 					$('#name').val("");  
 					$('#balance').val("");  
+				},
+				error:function(err) {
+					alert("계좌개설에 실패했습니다");
 				}
 			})
 		})

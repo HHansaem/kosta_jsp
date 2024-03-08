@@ -53,7 +53,7 @@ public class MakeAccount extends HttpServlet {
 			response.getWriter().write("계좌가 개설되었습니다.");
 		} catch (Exception e) {
 			e.printStackTrace();
-			response.getWriter().write("계좌가 개설되지 않았습니다");
+			response.sendError(500);
 		}
 	}
 
