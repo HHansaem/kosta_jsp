@@ -83,6 +83,9 @@
 					} else {
 						alert("사용 가능한 계좌번호 입니다");
 					}
+				},
+				error:function(result) {
+					
 				}
 			})
 		})
