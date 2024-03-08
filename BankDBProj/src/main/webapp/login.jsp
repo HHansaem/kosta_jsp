@@ -10,7 +10,11 @@
 		Cookie[] cookies = request.getCookies();
 		for(Cookie cookie : cookies) {
 			if(cookie.getName().equals("autologin")) {
-				autologin = true;
+				if(cookie.getValue().equals("true")) {
+					autologin = true;
+				} else {
+					autologin = false;
+				}
 			} else if(cookie.getName().equals("id")) {
 				id = cookie.getValue();
 			} else if(cookie.getName().equals("password")) {
@@ -73,14 +77,14 @@
 				</div>
 			</div>
 			<div>
-				<input type="submit" value="로그인"/>
-			</div>
-			<div>
 				<% if(autologin) { %>
 					<input type="checkbox" value="true" name="autologin" checked="checked"/>자동로그인
 				<% } else { %>
 					<input type="checkbox" value="true" name="autologin"/>자동로그인
 				<% } %>
+			</div>
+			<div>
+				<input type="submit" value="로그인"/>
 			</div>
 		</div>
 	</form>
