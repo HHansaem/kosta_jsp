@@ -75,8 +75,7 @@
 				data:{member:JSON.stringify(member)},
 				success:function(result) {
 					if(result == 'true') {
-						alert("회원가입에 성공했습니다");
-						location.href = "login";
+						location.href = "main";
 					} else {
 						alert(result);
 					}
