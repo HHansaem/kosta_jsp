@@ -52,9 +52,9 @@
 				var i = 0;
 				for(var acc of accs) {
 					$("#container").append(
-						`<div class="row">
 						//문자열 안의 \ -> 이스케이프 문자 
 						//(\안쓰면 jquery의 $로 인식하기 때문에 `안에서의 $를 같이 사용할 떄는 \를 붙여야 함)
+						`<div class="row">
 							<div class="column">\${++i}</div>  
 							<div class="column">\${acc.id}</div>
 							<div class="column">\${acc.name}</div>
