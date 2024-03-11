@@ -50,7 +50,7 @@
     .input {
         float: left;
     }
-    input[type='submit'] {
+    #submit {
         font-weight: bold;
         width: 120px;
         background-color: lightgray;
@@ -58,35 +58,62 @@
         margin: 0 auto;
     }
 </style>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+	$(function() {
+		$("#submit").click(function() {
+			var login = {};
+			login.id = $("#id").val();
+			login.password = $("#password").val();
+			login.autologin = $("#autologin").is(":checked");
+			console.log(login);
+			
+			$.ajax({
+				url:"login",
+				type:"post",
+				async:true,
+				data:{login:JSON.stringify(login)},
+				success:function(result) {
+					if(result == 'true'){
+						location.href = "main";
+					} else {
+						alert(result);
+					}
+				},
+				error:function(err) {
+					alert("로그인 실패");
+				}
+			})
+		})
+	})
+</script>
 </head>
 <body>
 <%@ include file="header.jsp" %>
-	<form action="login" method="post">
-		<div class="header"><h3>로그인</h3></div>
-		<div class="container">
-	    	<div class="row">
-				<div class="title">아이디</div>
-				<div class="input">
-					<input type="text" name="id" value='<%=id%>'/>
-				</div>
-			</div>
-			<div class="row">
-				<div class="title">비밀번호</div>
-				<div class="input">
-					<input type="text" name="password" value='<%=password%>'/>
-				</div>
-			</div>
-			<div>
-				<% if(autologin) { %>
-					<input type="checkbox" value="true" name="autologin" checked="checked"/>자동로그인
-				<% } else { %>
-					<input type="checkbox" value="true" name="autologin"/>자동로그인
-				<% } %>
-			</div>
-			<div>
-				<input type="submit" value="로그인"/>
-			</div>
+<div class="header"><h3>로그인</h3></div>
+<div class="container">
+   	<div class="row">
+		<div class="title">아이디</div>
+		<div class="input">
+			<input type="text" name="id" value='<%=id%>' id="id"/>
 		</div>
-	</form>
+	</div>
+	<div class="row">
+		<div class="title">비밀번호</div>
+		<div class="input">
+			<input type="text" name="password" value='<%=password%>' id="password"/>
+		</div>
+	</div>
+	<div>
+		<% if(autologin) { %>
+			<input type="checkbox" value="true" name="autologin" checked="checked" id="autologin"/>자동로그인
+		<% } else { %>
+			<input type="checkbox" value="false" name="autologin" id="autologin"/>자동로그인
+		<% } %>
+	</div>
+	<div>
+		<button id="submit">로그인</button>
+	</div>
+</div>
 </body>
 </html>
