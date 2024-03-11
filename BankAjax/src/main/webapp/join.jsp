@@ -27,7 +27,7 @@
     .input {
         float: left;
     }
-    input[type='submit'] {
+    #submit {
         font-weight: bold;
         width: 120px;
         background-color: lightgray;
@@ -59,39 +59,64 @@
 				}
 			})
 		})
+		
+		$("#submit").click(function() {
+			var member = {};
+			member.id = $("#id").val();
+			member.name = $("#name").val();
+			member.password = $("#password").val();
+			member.email = $("#email").val();
+			member.address = $("#address").val();
+			
+			$.ajax({
+				url:'join',
+				type:'post',
+				async:true,
+				data:{member:JSON.stringify(member)},
+				success:function(result) {
+					if(result == 'true') {
+						alert("회원가입에 성공했습니다");
+						location.href = "login";
+					} else {
+						alert(result);
+					}
+				},
+				error:function(err) {
+					alert("회원가입에 실패했습니다");
+				}
+			})
+		})
 	})
 </script>
 </head>
 <body>
 <%@ include file="header.jsp" %>
-	<form action="join" method="post">	
-		<div class="header"><h3>회원가입</h3></div>
-		<div class="container">
-			<div class="row">
-				<div class="title">아이디</div>
-				<div class="input"><input type="text" name="id" id="id"/></div>&nbsp;
-				<button id="doubleId">중복</button>
-			</div>
-			<div class="row">
-				<div class="title">이름</div>
-				<div class="input"><input type="text" name="name"/></div>
-			</div>
-			<div class="row">
-				<div class="title">비밀번호</div>
-				<div class="input"><input type="password" name="password"/></div>
-			</div>
-			<div class="row">
-				<div class="title">이메일</div>
-				<div class="input"><input type="text" name="email"/></div>
-			</div>
-			<div class="row">
-				<div class="title">주소</div>
-				<div class="input"><input type="text" name="address"/></div>
-			</div>
-			<div class="button">
-				<input type="submit" value="회원가입">
-			</div>
+	<div class="header"><h3>회원가입</h3></div>
+	<div class="container">
+		<div class="row">
+			<div class="title">아이디</div>
+			<div class="input"><input type="text" name="id" id="id"/></div>&nbsp;
+			<button id="doubleId">중복</button>
 		</div>
-	</form>
+		<div class="row">
+			<div class="title">이름</div>
+			<div class="input"><input type="text" name="name" id="name"/></div>
+		</div>
+		<div class="row">
+			<div class="title">비밀번호</div>
+			<div class="input"><input type="password" name="password" id="password"/></div>
+		</div>
+		<div class="row">
+			<div class="title">이메일</div>
+			<div class="input"><input type="text" name="email" id="email"/></div>
+		</div>
+		<div class="row">
+			<div class="title">주소</div>
+			<div class="input"><input type="text" name="address" id="address"/></div>
+		</div>
+		<div class="button">
+			<button id="submit">회원가입</button>
+		</div>
+	</div>
 </body>
 </html>
