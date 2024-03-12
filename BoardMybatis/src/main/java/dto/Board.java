@@ -7,7 +7,7 @@ public class Board {
 	private String subject;
 	private String content;
 	private Date writedate;
-	private String fileurl;
+	private Integer filenum;
 	private String writer;
 	private Integer viewcount;
 	private Integer likecount;
@@ -36,11 +36,11 @@ public class Board {
 	public void setWritedate(Date writedate) {
 		this.writedate = writedate;
 	}
-	public String getFileurl() {
-		return fileurl;
+	public Integer getFilenum() {
+		return filenum;
 	}
-	public void setFileurl(String fileurl) {
-		this.fileurl = fileurl;
+	public void setFilenum(Integer filenum) {
+		this.filenum = filenum;
 	}
 	public String getWriter() {
 		return writer;
