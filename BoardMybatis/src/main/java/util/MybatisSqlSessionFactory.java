@@ -15,7 +15,12 @@ public class MybatisSqlSessionFactory {
 			//실제 data-source 및 mapper정보를 'mybatis-config.xml'을 통해 전부 가져오기
 			String resource = "resource/mybatis-config.xml";
 			InputStream inputStream = Resources.getResourceAsStream(resource);
-			sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);   
+			
+			//SqlSessionFactoryBuilder 생성
+			SqlSessionFactoryBuilder sqlSessionFactoryBuilder = new SqlSessionFactoryBuilder();
+			
+			//SqlSessionFactory 생성
+			sqlSessionFactory = sqlSessionFactoryBuilder.build(inputStream);   
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
