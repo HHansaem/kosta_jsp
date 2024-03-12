@@ -30,7 +30,7 @@ table {
 <body>
 	<section id="./writeForm">
 		<h2>게시판글등록</h2>
-<!-- 		file 업로드시 enctype="multipart/form-data" 적어줘야함 -->
+<!-- 		file 업로드시 파일 정보를 넘기기 위해 enctype="multipart/form-data" 적어줘야함 -->
 		<form action="boardwrite" method="post" enctype="multipart/form-data" name="boardform">
 			<table>
 				<tr>
@@ -49,6 +49,7 @@ table {
 				</tr>
 				<tr>
 					<td class="td_left"><label for="file">이미지 파일 첨부</label></td>
+<!-- 					accept="image/*" : 이미지 파일만 거르고 싶을 때 -->
 					<td class="td_right"><input name="file" type="file" id="file" accept="image/*"/></td>
 				</tr>
 			</table>
