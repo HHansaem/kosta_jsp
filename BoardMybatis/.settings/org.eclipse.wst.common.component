@@ -2,7 +2,7 @@
     <wb-module deploy-name="BoardMybatis">
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
-        <property name="context-root" value="BoardMybatis"/>
         <property name="java-output-path" value="/BoardMybatis/build/classes"/>
+        <property name="context-root" value="board"/>
     </wb-module>
 </project-modules>
