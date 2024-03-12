@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 태그 사용하기 위해 위와 같이 정의한 것  -->
+ 
+<!--  해당 mapper는 mybatis-config.xml에서 정의해준다 -->
+ <mapper namespace="mapper.board">
+ 	<insert id="insertBoard" parameterType="dto.Board" useGeneratedKeys="true" keyProperty="num">
+ 		<!-- useGeneratedKeys는 AUTO_INCREMENT를 사용하는지, keyProperty는 key값 컬럼명 -->
+<!--  		<![CDATA[ : 태그 안에서의 부등호를 캐릭터로 인식하라고 사용 -->
+ 		<![CDATA[
+ 			insert into board (subject, content, writedate, fileurl, writer)
+ 				values (#{subject}, #{content}, curdate(), #{fileurl}, #{writer})
+ 		]]>
+ 	</insert>
+ </mapper>
