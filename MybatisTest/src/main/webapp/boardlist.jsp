@@ -38,6 +38,7 @@
 </style>
 </head>
 <body>
+<jsp:include page="main.jsp" />
 <h2>글 목록&nbsp;&nbsp;&nbsp;&nbsp;<a href="boardwrite">글쓰기</a></h2>
 <table>
 	<tr id="tr_top">
@@ -57,6 +58,7 @@
 		</c:forEach>
 	</tr>
 </table>
+<br>
 <div id="emptyArea">
 	<c:choose>
 		<c:when test="${pageInfo.curPage == 1 }">
