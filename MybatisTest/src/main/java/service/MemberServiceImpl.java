@@ -22,8 +22,8 @@ public class MemberServiceImpl implements MemberService {
 		String password = request.getParameter("password");
 		String email = request.getParameter("email");
 		String address = request.getParameter("address");
-		
-		Member member = new Member(id, name, password, email, address);
+		String detailAddress = request.getParameter("detailAddress");
+		Member member = new Member(id, name, password, email, address, detailAddress);
 		memberDAO.insertMember(member);
 	}
 

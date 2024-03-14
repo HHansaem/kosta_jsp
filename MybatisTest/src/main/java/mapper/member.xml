@@ -6,8 +6,8 @@
  	<insert id="insertMember" parameterType="Member">
 <!--  	 useGeneratedKeys="true" keyProperty="id" 이거는 key값이 자동으로 정해질 때 넣는다 얘는 자동 아니니까 -->
  		<![CDATA[
-         insert into member (id, name, password, email, address)
-         values (#{id}, #{name}, #{password}, #{email}, #{address})
+         insert into member (id, name, password, email, address, detailaddress)
+         values (#{id}, #{name}, #{password}, #{email}, #{address}, #{detailAddress})
       	]]>
  	</insert>
  	
