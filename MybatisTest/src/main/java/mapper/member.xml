@@ -3,17 +3,18 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
  <mapper namespace="mapper.member">
- 	<insert id="insertMember" parameterType="Member" useGeneratedKeys="true" keyProperty="id">
+ 	<insert id="insertMember" parameterType="Member">
+<!--  	 useGeneratedKeys="true" keyProperty="id" 이거는 key값이 자동으로 정해질 때 넣는다 얘는 자동 아니니까 -->
  		<![CDATA[
          insert into member (id, name, password, email, address)
          values (#{id}, #{name}, #{password}, #{email}, #{address})
-      ]]>
+      	]]>
  	</insert>
  	
- 	<select id="selectMember" resultType="String">
+ 	<select id="selectMember" parameterType="String" resultType="Member">
  		<![CDATA[
          select * from member where id=#{id}
-      ]]>
+      	]]>
  	</select>
  	
  </mapper>
