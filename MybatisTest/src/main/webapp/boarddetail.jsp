@@ -29,8 +29,32 @@
 		height: 200px;
 	}
 </style>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+	$(function() {
+		$('#like').click(function() {
+			$.ajax({
+				url:'boardlike',
+				type:'post',
+				async:true,
+				data:{like:JSON.stringify({memberId:"${user.id}", boardNum:"${board.num}"})},
+				success:function(result) {
+					if(result == 'true') {
+						$('#like').attr("src", "image?num=redheart.png")
+					} else {
+						$('#like').attr("src", "image?num=blackheart.png")
+					}
+				},
+				error:function(err) {
+					
+				}
+			})
+		})
+	})
+</script>
 </head>
 <body>
+<jsp:include page="main.jsp" />
 <h2>게시판 글 상세</h2>
 <table border="1">
 	<tr>
@@ -57,6 +81,16 @@
 <div id="commandCell">
 	<a href="boardmodify?num=${board.num }">수정</a>&nbsp;&nbsp;&nbsp;
 	<a href="boardlist">목록</a>&nbsp;&nbsp;&nbsp;
+	<c:if test="${user ne Empty }"> <!-- 로그인했을 때만 하트 누를 수 있게 -->
+		<c:choose>
+			<c:when test="${like eq 'true' }">
+				<img src="image?num=redheart.png" width="40px" height="40px" style="margin-top:5px" id="like"/>
+			</c:when>
+			<c:otherwise>
+				<img src="image?num=blackheart.png" width="40px" height="40px" style="margin-top:5px" id="like"/>
+			</c:otherwise>
+		</c:choose>
+	</c:if>
 </div>
 </body>
 </html>
