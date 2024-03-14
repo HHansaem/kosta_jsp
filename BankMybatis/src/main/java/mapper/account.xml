@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="mapper.account">
+ 	
+ 	<insert id="insertAccount" parameterType="Account" useGeneratedKeys="true" keyProperty="id">
+ 		insert into account(id, name, balance, type, grade)
+ 			values(#{id}, #{name}, #{balance}, #{type}, #{grade})
+ 	</insert>
+ 	
+ 	<select id="selectAccount" parameterType="String" resultType="Account">
+ 		select * from account where id=#{id}
+ 	</select>
+ 	
+ 	<select id="selectAccountList" resultType="Account">
+ 		select * from account
+ 	</select>
+ 	
+ 	<update id="updateAccountBalance" parameterType="Account">
+ 		update account set balance=#{balance} where id=#{id}
+ 	</update>
+ 	
+ </mapper>
