@@ -29,7 +29,6 @@ public class Join extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
 		request.getRequestDispatcher("join.jsp").forward(request, response);
 	}
 
@@ -37,14 +36,13 @@ public class Join extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
 		try {
 			MemberService memberService = new MemberServiceImpl();
 			memberService.join(request);
-			response.sendRedirect("login");
+			response.sendRedirect("main");
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("err", "회원가입 실패");
+			request.setAttribute("err", e.getMessage());
 			request.getRequestDispatcher("error.jsp").forward(request, response);
 		}
 	}

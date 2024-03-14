@@ -55,7 +55,7 @@
 					}
 				},
 				error:function(result) {  //에러 났을 때 실행될 함수 (안 써도 됨)
-					
+					alert("아이디 중복 체크 오류")
 				}
 			})
 		})
@@ -63,6 +63,7 @@
 </script>
 </head>
 <body>
+<jsp:include page="main.jsp" />
 <form action="join" method="post">	
 	<div class="header"><h3>회원가입</h3></div>
 	<div class="container">
