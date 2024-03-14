@@ -60,6 +60,7 @@
 </style>
 </head>
 <body>
+<jsp:include page="main.jsp" />
 <form action="login" method="post">
 	<div class="header"><h3>로그인</h3></div>
 	<div class="container">

@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import service.MemberService;
+import service.MemberServiceImpl;
+
 /**
  * Servlet implementation class Login
  */
@@ -26,7 +29,6 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
 		request.getRequestDispatcher("login.jsp").forward(request, response);
 	}
 
@@ -34,11 +36,14 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
 		try {
-			
+			MemberService memberService = new MemberServiceImpl();
+			memberService.login(request);
+			response.sendRedirect("main");
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
+			request.setAttribute("err", e.getMessage());
+			request.getRequestDispatcher("error.jsp").forward(request, response);
 		}
 	}
 
