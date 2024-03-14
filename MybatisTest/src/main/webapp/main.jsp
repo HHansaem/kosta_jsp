@@ -11,7 +11,7 @@
 		height: 110px;
 		display: flex;
 	}
-	a,b{
+	.a,b{
 		display: inline-block;
 		line-height: 110px;
 	}
@@ -23,14 +23,14 @@
 <img src="image?num=catLogo.png" width="100px" height="100px">&nbsp;
 <c:choose>
 	<c:when test="${user eq Empty}">
-		<a href="login">로그인</a>
+		<a href="login" class="a">로그인</a>
 	</c:when>
 	<c:otherwise>
-		<b>${user.name }</b>&nbsp;&nbsp;<a href="logout">로그아웃</a>
+		<b>${user.name }</b>&nbsp;&nbsp;<a href="logout" class="a">로그아웃</a>
 	</c:otherwise>
 </c:choose>&nbsp;&nbsp;&nbsp;
-<a href="join">회원가입</a>&nbsp;&nbsp;&nbsp;
-<a href="boardlist">게시판목록</a><br><br>
+<a href="join" class="a">회원가입</a>&nbsp;&nbsp;&nbsp;
+<a href="boardlist" class="a">게시판목록</a><br><br>
 </div>
 </body>
 </html>
