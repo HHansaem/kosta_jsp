@@ -25,5 +25,6 @@
 <!-- 	xml은 클래스 개념이 아니기 때문에 폴더개념으로 /를 씀 -->
 		<mapper resource="mapper/board.xml"/>
 		<mapper resource="mapper/member.xml"/>
+		<mapper resource="mapper/boardlike.xml"/>
 	</mappers>
 </configuration>
