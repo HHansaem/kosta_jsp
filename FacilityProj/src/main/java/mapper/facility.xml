@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="mapper.facility">
+ 	
+ 	<select id="selectFacilityList" resultType="Facility">
+<!--  		테이블의 속성 이름과 dto의 이름이 다를 때는 하나하나 이렇게 써줘야 함 -->
+ 		<![CDATA[
+			select fac_id as id, fac_type as type, fac_type_name as typeName, 
+					fac_nm as name, price as price, available_time as time, etc as etc
+			from facility
+ 		]]>
+ 	</select>
+
+ 	<select id="selectFacility" parameterType="String" resultType="Facility">
+ 		<![CDATA[
+			select fac_id as id, fac_type as type, fac_type_name as typeName, 
+					fac_nm as name, price as price, available_time as time, etc as etc
+			from facility
+			where fac_id=#{id}
+ 		]]>
+ 	</select>
+ 	
+ 	<update id="updateFacility" parameterType="Map">
+ 		<![CDATA[
+ 			update facility 
+ 			set fac_nm=#{name}, price=#{price}, etc=#{etc}
+ 			where fac_id=#{id}
+ 		]]>
+ 	</update>
+ </mapper>
