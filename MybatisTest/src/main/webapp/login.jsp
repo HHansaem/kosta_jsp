@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	String cookieHeader = request.getHeader("Cookie");
 	Boolean autologin = false;
@@ -57,6 +58,10 @@
         display: block;
         margin: 0 auto;
     }
+    .login {
+    	text-align: center;
+    	margin-top: 10px;
+    }
 </style>
 </head>
 <body>
@@ -83,10 +88,18 @@
 				<input type="checkbox" value="true" name="autologin"/>자동로그인
 			<% } %>
 		</div>
-		<div>
+		<div class="login">
 			<input type="submit" value="로그인"/>
+		<!-- client_id는 내 애플리케이션의 REST API 키 -->
+		<!-- redirect_uri는 카카오로그인 탭의 Redirect URI -->
+		<!-- response_type는 코드로 받겠다는 거 -->
+			<a href="https://kauth.kakao.com/oauth/authorize?client_id=64a71bf8086477eb48501855a911415f
+					&redirect_uri=http://localhost:8080/test/kakao&response_type=code">
+				<img src='<c:url value="/image/kakao_login_medium_narrow.png"/>' />
+			</a>
 		</div>
 	</div>
 </form>
+
 </body>
 </html>

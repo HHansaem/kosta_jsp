@@ -22,11 +22,15 @@
 <div id="header">
 <img src="image?num=catLogo.png" width="100px" height="100px">&nbsp;
 <c:choose>
-	<c:when test="${user eq Empty}">
-		<a href="login" class="a">로그인</a>
+	<c:when test="${nickname ne Empty}">
+		<b>${nickname }&nbsp;&nbsp;<img src="${thumbnail }" width="40px" height="40px" style="border-radius: 50%"/></b>&nbsp;&nbsp;
+		<a href="logout" class="a">로그아웃</a>
+	</c:when>
+	<c:when test="${user ne Empty}">
+		<b>${user.name }</b>&nbsp;&nbsp;<a href="logout" class="a">로그아웃</a>
 	</c:when>
 	<c:otherwise>
-		<b>${user.name }</b>&nbsp;&nbsp;<a href="logout" class="a">로그아웃</a>
+		<a href="login" class="a">로그인</a>
 	</c:otherwise>
 </c:choose>&nbsp;&nbsp;&nbsp;
 <a href="join" class="a">회원가입</a>&nbsp;&nbsp;&nbsp;
