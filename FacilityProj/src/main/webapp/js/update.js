@@ -1,5 +1,5 @@
 $(function() {
 	$('#cancelBtn').click(function() {
-		location.href = '/sciencePark/facility/list';
+		location.href = '/facility/list';
 	});
 });

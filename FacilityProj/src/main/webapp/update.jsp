@@ -7,14 +7,21 @@
 <title>LG사이언스파크</title>
 <link rel="stylesheet" href="<c:url value="/css/update.css"/>">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="<c:url value="/js/update.js"/>"></script>
+<%-- <script src="<c:url value="/js/update.js"/>"></script> --%>
+<script type="text/javascript">
+	$(function() {
+		$('#cancelBtn').click(function() {
+			location.href = '/facility/list';
+		});
+	});
+</script>
 </head>
 <body>
 <div class="signUp">
 	<h1>시설수정</h1>
 	<hr>
 	<form id="updateForm" action="<c:url value="/facility/update"/>" method="post">
-		<input type="hidden" name="id" value=""><!-- TODO value -->
+		<input type="hidden" name="id" value="${facility.id }"><!-- TODO value -->
 		<table>
 			<colgroup>
 				<col style="width: 25%;">
@@ -23,23 +30,23 @@
 			<tbody>
 				<tr>
 					<th>시설유형</th>
-					<td><input type="text" value="" readonly></td><!-- TODO value -->
+					<td><input type="text" value="${facility.typeName }" readonly></td>
 				</tr>
 				<tr>
 					<th>시설명</th>
-					<td><input type="text" name="name" value="" placeholder="시설명" required>*시설명을 입력해주세요</td><!-- TODO value -->
+					<td><input type="text" name="name" value="${facility.name}" placeholder="시설명" required>*시설명을 입력해주세요</td><!-- TODO value -->
 				</tr>
 				<tr>
 					<th>이용료</th>
-					<td><input type="text" name="price" value="" placeholder="이용료" required>*이용료를 입력해주세요</td><!-- TODO value -->
+					<td><input type="text" name="price" value="${facility.price }" placeholder="이용료" required>*이용료를 입력해주세요</td><!-- TODO value -->
 				</tr>
 				<tr>
 					<th>사용가능시간</th>
-					<td><input type="text" value="" readonly></td><!-- TODO value -->
+					<td><input type="text" value="${facility.time}" readonly></td><!-- TODO value -->
 				</tr>
 				<tr>
 					<th>ETC</th>
-					<td><input type="text" name="etc" value="" placeholder="etc" class="input-large"></td><!-- TODO value -->
+					<td><input type="text" name="etc" value="${facility.etc}" placeholder="etc" class="input-large"></td><!-- TODO value -->
 				</tr>
 			</tbody>
 		</table>
