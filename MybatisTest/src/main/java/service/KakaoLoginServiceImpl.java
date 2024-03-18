@@ -77,7 +77,7 @@ public class KakaoLoginServiceImpl implements KakaoLoginService {
 		conn.setRequestMethod("GET");
 		conn.setRequestProperty("Authorization", "Bearer "+token);
 		
-		BufferedReader br;
+		BufferedReader br; 
 		int resultCode = conn.getResponseCode();
 		System.out.println(resultCode);
 		if(resultCode>=200 && resultCode<=300) {  //정상
