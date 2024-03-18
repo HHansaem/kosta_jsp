@@ -6,7 +6,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import dto.Employee;
 import service.EmployeeService;
 import service.EmployeeServiceImpl;
 
@@ -35,8 +37,12 @@ public class Login extends HttpServlet {
 		
 		try {
 			EmployeeService empService = new EmployeeServiceImpl();
-			empService.login(empNo, empPw);
-			request.getRequestDispatcher("/list.jsp").forward(request, response);
+			Employee emp = empService.login(empNo, empPw);
+			//세션에 사번 및 비밀번호 담기
+			HttpSession session = request.getSession();
+			session.setAttribute("empNo", emp.getEmpNo());
+			session.setAttribute("empNm", emp.getEmpNm());
+			response.sendRedirect("/facility/list");
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("err", e.getMessage());
