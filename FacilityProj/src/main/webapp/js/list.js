@@ -11,7 +11,7 @@ $(function() {
 	
 	$('.updateBtn').click(function() {
 		var facilityId = $(this).parents('tr').attr('id');
-		location.href = '/sciencePark/facility/update?id=' + facilityId;
+		location.href = '/facility/update?id=' + facilityId;
 	});
 	
 	$('#reservationForm').submit(function() {

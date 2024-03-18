@@ -7,7 +7,101 @@
 <title>LG사이언스파크</title>
 <link rel="stylesheet" href="<c:url value="/css/list.css"/>">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="<c:url value="/js/list.js"/>"></script>
+<%-- <script src="<c:url value="/js/list.js"/>"></script> --%>
+<script type="text/javascript">
+	$(function() {
+		$('#facilityType').change(function() {
+			var facilityType = $(this).val();
+			showFacilities(facilityType);
+		});
+	
+		$('.facility .facilityName').click(function() {
+			var facility = $(this).parents('tr');
+			reserve(facility);
+		});
+		
+		$('.updateBtn').click(function() {
+			var facilityId = $(this).parents('tr').attr('id');
+			location.href = '/facility/update?id=' + facilityId;
+		});
+		
+		$('#reservationForm').submit(function() {
+			var totalPrice = parseInt($('#totalPrice').text());
+			
+			if (totalPrice <= 0) {
+				alert('예약할 시설을 선택하세요.');
+				return false;
+			}
+			
+			var teamBudget = parseInt($('#teamBudget').val());
+			
+			if (totalPrice > teamBudget) {
+				alert('팀예산을 초과하였습니다.');
+				return false;
+			}
+			
+			alert('예약이 완료되었습니다.');
+			return true;
+		});
+	
+		$('#logoutBtn').click(function() {
+			location.href = '/sciencePark/member/logout';
+		});
+		
+		function reserve(facility) {
+			var reservationDetails = $('.reservationDetails tbody').eq(0);
+			var rows = reservationDetails.find('tr');
+			
+			var facilityId = facility.attr('id');
+			
+			for (var i = 0; i < rows.length; i++) {
+				var rowId = rows.eq(i).attr('id');
+				
+				if (rowId == facilityId) {
+					alert('이미 목록에 있는 시설입니다.');
+					return;
+				}
+			}
+	
+			var totalPrice = $('#totalPrice');
+			var price = parseInt(facility.find('.price').text());
+			
+			var facilityName = facility.find('.facilityName').text();
+			
+			var template = $('#reservationTemplate');
+			var row = template.clone();
+	
+			row.attr('id', facilityId);
+			row.find('.facilityName').text(facilityName);
+			row.find('.price').text(price);
+			
+			var deleteBtn = row.find('button');
+			deleteBtn.click(function() {
+				var tr = $(this).parents('tr');
+				var price = tr.find('.price').text();
+				
+				totalPrice.text(totalPrice.text() - price);
+				tr.remove();
+			});
+			
+			row.removeClass('blind');
+			reservationDetails.append(row);
+	
+			var tPrice = parseInt(totalPrice.text());
+			totalPrice.text(tPrice + price);
+		}
+		
+		function showFacilities(facilityType) {
+			$('.facility tbody tr').addClass('blind');
+			
+			if (facilityType) {
+				$('.facility tbody tr.' + facilityType).each(function() {
+					$(this).removeClass('blind');
+				});
+			}
+		}
+	});
+</script>
 </head>
 <body>
 <header>
@@ -50,30 +144,15 @@
 		<!-- 
 		TODO dymanic tr with jstl and el
 		 -->
-			<tr id="CR_001" class="CR blind">
-				<td class="facilityName">L회의실</td>
-				<td>회의실</td>
-				<td><span class="price">100000</span>원</td>
-				<td>09-18</td>
-			</tr>
-			<tr id="CR_002" class="CR blind">
-				<td class="facilityName">G회의실</td>
-				<td>회의실</td>
-				<td><span class="price">120000</span>원</td>
-				<td>09-18</td>
-			</tr>
-			<tr id="PR_001" class="PR blind">
-				<td class="facilityName">프로젝트룸 D6-1</td>
-				<td>프로젝트룸</td>
-				<td><span class="price">90000</span>원</td>
-				<td>00-24</td>
-			</tr>
-			<tr id="HL_001" class="HL blind">
-				<td class="facilityName">대강당</td>
-				<td>강당</td>
-				<td><span class="price">200000</span>원</td>
-				<td>09-17</td>
-			</tr>
+		 	<c:forEach items="${facilityList }" var="facility">
+				<tr id="${facility.id }" class="${facility.type } blind">
+					<td class="facilityName">${facility.name }</td>
+					<td>${facility.typeName }</td>
+					<td><span class="price">${facility.price }</span>원</td>
+					<td>${facility.time }</td>
+					<td><button type="button" class="updateBtn">수정</button></td>
+				</tr>
+		 	</c:forEach>
 		</tbody>
 	</table>
 </div>
@@ -118,7 +197,7 @@
 				</tr>
 				<tr>
 					<th>사번</th>
-					<td><!-- TODO empNo, empNm --></td>
+					<td>${empNo }(${empNm })</td>
 				</tr>
 			</tbody>
 		</table>
