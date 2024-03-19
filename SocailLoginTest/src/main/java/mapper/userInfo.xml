@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="mapper.userInfo">
+ 	<select id="selectUserInfo" parameterType="String" resultType="UserInfo">
+ 		<![CDATA[
+ 			select * from userInfo where id=#{id}
+ 		]]>
+ 	</select>
+ 	
+ 	<insert id="insertUserInfo" parameterType="UserInfo">
+ 		<![CDATA[
+ 			insert userInfo (id, nickname, profile_img, thumbnail_img)
+ 				values (#{id}, #{nickname}, #{profileImg}, #{thumbnailImg})
+ 		]]>
+ 	</insert>
+ </mapper>
